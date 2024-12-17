@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sofu.dao.ConcernDao" >
+    <insert id="addConcern" useGeneratedKeys="true">
+        insert into sofu_concern (user_id, q_id, add_time)
+        VALUES (#{userId}, #{qId}, #{addTime})
+    </insert>
+
+    <select id="queryByUserId" resultType="com.sofu.pojo.Concern">
+        select * from sofu_concern WHERE user_id = #{userId};
+    </select>
+
+
+</mapper>

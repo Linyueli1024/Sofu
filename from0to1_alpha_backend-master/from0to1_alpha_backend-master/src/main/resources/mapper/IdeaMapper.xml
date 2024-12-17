@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sofu.dao.IdeaDao" >
+
+
+   <!-- <insert id="insertReport">
+        insert into sofu_report(type, targetid, reason, other, user_id, report_time)
+        VALUES (#{type},#{targetId},#{reason},#{other},#{userId},#{reportTime});
+    </insert>
+-->
+    <insert id="addIdea" useGeneratedKeys="true">
+        insert into sofu_idea(idea_title, img_link, classify_id, idea_info, user_id, post_time)
+        values(#{ideaTitle},#{imgLink}, #{classifyId},#{ideaInfo}, #{userId}, #{postTime})
+    </insert>
+</mapper>

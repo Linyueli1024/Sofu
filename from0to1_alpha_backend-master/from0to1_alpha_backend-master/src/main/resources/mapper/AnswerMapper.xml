@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sofu.dao.AnswerDao" >
+
+    <insert id="addAns" useGeneratedKeys="true" >
+        insert into sofu_answer (user_id, q_id, ans_info, img_link,post_time)
+        VALUES (#{userId}, #{qId}, #{ansInfo}, #{imgLink}, #{postTime})
+    </insert>
+
+    <select id="queryByqId" resultType="com.sofu.pojo.Answer">
+        select * from sofu_answer where q_id = #{qId}
+    </select>
+    <select id="queryByAnsId" resultType="com.sofu.pojo.Answer">
+        select * from sofu_answer where ans_id = #{ansId}
+    </select>
+    <select id="queryByUserId" resultType="com.sofu.pojo.Answer">
+        select * from sofu_answer where user_id = #{userId};
+    </select>
+
+    <update id="addLikeNum" parameterType="Integer">
+        update sofu_answer set like_num=like_num+1 where ans_id=#{ans_id}
+    </update>
+
+</mapper>

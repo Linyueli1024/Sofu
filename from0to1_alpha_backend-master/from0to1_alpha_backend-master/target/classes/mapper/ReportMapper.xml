@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sofu.dao.ReportDao" >
+
+
+    <insert id="insertReport" useGeneratedKeys="true">
+        insert into sofu_report(type, targetid, reason, other, user_id, report_time)
+        VALUES (#{type},#{targetId},#{reason},#{other},#{userId},#{reportTime});
+    </insert>
+
+</mapper>

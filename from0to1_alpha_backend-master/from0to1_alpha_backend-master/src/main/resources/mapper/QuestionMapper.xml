@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sofu.dao.QuestionDao" >
+
+    <resultMap id="answerResult" type="com.sofu.pojo.Answer">
+        <id property="ansId" column="ans_id" />
+        <result property="ansInfo"  column="ans_info" />
+        <result property="imgLink"  column="img_link" />
+        <result property="postTime"  column="post_time" />
+    </resultMap>
+
+    <resultMap type="com.sofu.pojo.vo.QuestionVo" id="QuestionVoList">
+        <id property="qId" column="q_id" />
+        <result property="qTitle"  column="q_title" />
+        <result property="answerNum"  column="answer_num" />
+        <result property="concernNum"  column="concern_num" />
+        <association property="answer" resultMap="answerResult" />
+    </resultMap>
+
+    <insert id="insertQuestion" useGeneratedKeys="true" keyProperty="qId" keyColumn="q_id">
+        insert into sofu_question (user_id, q_title, q_info, img_link, classify_id, post_time,hotdegree)
+        values (#{userId}, #{qTitle}, #{qInfo}, #{imgLink}, #{classifyId}, #{postTime}, #{hotDegree})
+    </insert>
+    <update id="addConcernNum">
+        update sofu_question set concern_num = concern_num+1 where q_id = #{qId};
+    </update>
+
+
+    <select id="selectQuestionVoList" resultMap="QuestionVoList">
+        select q.q_title,a.ans_id,a.ans_info,a.img_link,a.post_time
+        from sofu_question q
+        left join sofu_answer a
+        on q.q_id = a.q_id where q.q_id=#{q_id};
+    </select>
+
+
+    <resultMap id="userResult" type="com.sofu.pojo.User">
+        <id property="userId" column="user_id" />
+        <result property="nickname"  column="nickname" />
+        <result property="avatar"  column="avatar" />
+    </resultMap>
+
+    <resultMap type="com.sofu.pojo.vo.AnswerVo" id="AnswerVoList">
+        <id property="ansId" column="ans_id" />
+        <association property="user" resultMap="userResult" />
+    </resultMap>
+
+    <select id="selectAnswerVoList" resultMap="AnswerVoList">
+        select u.nickname,u.avatar
+        from sofu_answer a
+        left join sofu_user u
+        on a.user_id = u.user_id where a.ans_id=#{ans_id};
+    </select>
+
+    <update id="addAnswerNum">
+        update sofu_question set answer_num = answer_num+1 where q_id = #{qId};
+    </update>
+
+
+    <select id="selectByTag" resultType="com.sofu.pojo.Question">
+        select * from sofu_question WHERE classify_id like concat('%',#{param1},'%') LIMIT #{param2};
+    </select>
+
+    <select id="queryQuestion" parameterType="String" resultType="com.sofu.pojo.Question">
+        select * from sofu_question WHERE q_title like '%${keyword}%'
+        or q_info like '%${keyword}%';
+    </select>
+
+    <select id="queryByMultiKeywords" parameterType="String" resultType="com.sofu.pojo.Question">
+        select * from sofu_question WHERE q_title REGEXP '${keyword}'
+        or q_info REGEXP '${keyword}';
+    </select>
+
+    <select id="selectQuestionByQid" resultType="com.sofu.pojo.Question">
+        select * from sofu_question WHERE q_id = #{qId};
+    </select>
+
+    <select id="selectAllQuestion"  resultType="com.sofu.pojo.Question">
+        select * from sofu_question order by hotdegree desc;
+    </select>
+
+</mapper>

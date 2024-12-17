@@ -1,0 +1,127 @@
+{
+	"pages": [
+		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/register/index",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		},
+		{
+			"path": "pages/my/my",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		},
+		{
+			"path": "pages/post/post",
+			"style": {
+				"navigationBarTitleText": "发布",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/classify/classify",
+			"style": {
+				"navigationBarTitleText": "获取分类"
+			}
+		},
+		{
+			"path": "pages/ques_detail/quesDetail",
+			"style": {
+				"navigationBarTitleText": "问题详情"
+			}
+		},
+		{
+			"path": "pages/addAns/addans",
+			"style": {
+				"navigationBarTitleText": "写回答"
+			}
+		},
+		{
+			"path": "pages/my/myquestion",
+			"style": {
+				"navigationBarTitleText": "我的提问",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/my/myconcern",
+			"style": {
+				"navigationBarTitleText": "myconcern",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/my/myanswer",
+			"style": {
+				"navigationBarTitleText": "我的回答",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/answer/answer",
+			"style": {
+				"navigationBarTitleText": "answer"
+			}
+		},
+		{
+			"path": "pages/searchResult/searchresult",
+			"style": {
+				"navigationBarTitleText": "searchresult",
+				"navigationStyle": "custom"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"enablePullDownRefresh": true
+	},
+	// 设置 TabBar
+	"tabBar": {
+		"color": "#333",
+		"selectedColor": "#f66d27",
+		"backgroundColor": "#fff",
+		"borderStyle": "white",
+		"list": [
+			{
+				"text": "首页",
+				"pagePath": "pages/index/index",
+				"iconPath": "static/tabs/home_default.png",
+				"selectedIconPath": "static/tabs/home_selected.png"
+			},
+			{
+				"text": "发布",
+				"pagePath": "pages/post/post",
+				"iconPath": "static/tabs/category_default.png",
+				"selectedIconPath": "static/tabs/category_selected.png"
+			},
+			{
+				"text": "我的",
+				"pagePath": "pages/my/my",
+				"iconPath": "static/tabs/user_default.png",
+				"selectedIconPath": "static/tabs/user_selected.png"
+			}
+		]
+	},
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			// uni-ui 规则如下配置
+			"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+		}
+	},
+	"usingComponents": {
+		"van-button": "@vant/weapp/button/index"
+	}
+}

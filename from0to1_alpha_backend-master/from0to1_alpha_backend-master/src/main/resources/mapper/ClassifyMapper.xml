@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sofu.dao.ClassifyDao" >
+
+    <resultMap id="classifyMap" type="com.sofu.pojo.Classify" >
+            <id column="classify_id" property="classifyId" />
+            <result column="name" property="name" />
+    </resultMap>
+
+    <select id="selectClassify" resultMap="classifyMap">
+        select * from sofu_classify;
+    </select>
+
+    <update id="addConnectNum" >
+        update sofu_classify set connect_num = connect_num+1 where classify_id = #{classifyId};
+    </update>
+
+</mapper>
